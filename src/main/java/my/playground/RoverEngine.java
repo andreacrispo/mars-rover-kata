@@ -1,8 +1,11 @@
 package my.playground;
 
+import my.playground.commands.*;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
 
 public class RoverEngine {
 
@@ -10,11 +13,11 @@ public class RoverEngine {
     private final Rover rover;
     private final List<Position> obstacles;
 
-    private final Map<Character, Command> commandMapper = Map.of(
-            'L', Command.left,
-            'R', Command.left,
-            'B', Command.backward,
-            'F', Command.forward
+    private final Map<Character, CommandType> commandMapper = Map.of(
+            'L', CommandType.left,
+            'R', CommandType.left,
+            'B', CommandType.backward,
+            'F', CommandType.forward
     );
 
     public RoverEngine(int nRow, int nCol, Rover rover) {
@@ -50,13 +53,13 @@ public class RoverEngine {
     }
 
     public void moveRover(char singleCommand) {
-        Command command =  this.commandMapper.get(singleCommand);
-        this.moveRover(command);
+        CommandType commandType =  this.commandMapper.get(singleCommand);
+        this.moveRover(commandType);
     }
 
-    public void moveRover(Command command) {
+    public void moveRover(CommandType commandType) {
         Position oldPosition = this.rover.getPosition();
-        Position nextPosition = this.rover.move(command);
+        Position nextPosition = this.rover.move(commandType);
         if(this.encounterAnObstacle(nextPosition)) {
             this.reportObstacle();
         }
@@ -65,6 +68,7 @@ public class RoverEngine {
             this.setPositionOnLand(oldPosition, nextPosition);
         }
     }
+
 
     private Position checkEdge(Position nextPosition) {
         if(nextPosition.getX() >= mars.nRow)

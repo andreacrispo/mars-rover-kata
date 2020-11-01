@@ -41,4 +41,10 @@ public class Position {
         return Objects.hash(x, y);
     }
 
+
+    public static Position Up() { return new Position(0, 1); }
+    public static Position Down() { return new Position(0, -1); }
+    public static Position Left() { return new Position(-1, 0); }
+    public static Position Right() { return new Position(1, 0); }
+
 }

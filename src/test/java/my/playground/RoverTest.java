@@ -1,5 +1,6 @@
 package my.playground;
 
+import my.playground.commands.CommandType;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +21,7 @@ class RoverTest {
         int y = 0;
         Rover rover = new Rover(0,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
-        Position newPosition =  rover.move(Command.forward);
+        Position newPosition =  rover.move(CommandType.forward);
 
         assertEquals(y+1, newPosition.getY());
     }
@@ -30,7 +31,7 @@ class RoverTest {
         int y = 1;
         Rover rover = new Rover(0,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
-        Position newPosition =  rover.move(Command.backward);
+        Position newPosition =  rover.move(CommandType.backward);
 
         assertEquals(0,newPosition.getX());
         assertEquals(y-1, newPosition.getY());
@@ -41,7 +42,7 @@ class RoverTest {
         int y = 0;
         int x = 1;
         Rover rover = new Rover(x,y, Direction.NORTH);
-        Position newPosition =  rover.move(Command.left);
+        Position newPosition =  rover.move(CommandType.left);
 
         assertEquals(x-1, newPosition.getX());
         assertEquals(y, newPosition.getY());
@@ -53,7 +54,7 @@ class RoverTest {
         int y = 0;
         int x = 0;
         Rover rover = new Rover(x,y, Direction.NORTH);
-        Position newPosition =  rover.move(Command.right);
+        Position newPosition =  rover.move(CommandType.right);
 
         assertEquals(x+1, newPosition.getX());
         assertEquals(y, newPosition.getY());
@@ -65,7 +66,7 @@ class RoverTest {
         int x =0;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.EAST);
-        Position newPosition =  rover.move(Command.forward);
+        Position newPosition =  rover.move(CommandType.forward);
         assertEquals(x+1, newPosition.getX());
         assertEquals(y, newPosition.getY());
     }
@@ -75,10 +76,10 @@ class RoverTest {
         int x=1;
         int y = 1;
         Rover rover = new Rover(x,y, Direction.EAST);
-        Position newPosition =  rover.move(Command.backward);
+        Position newPosition =  rover.move(CommandType.backward);
 
-        assertEquals(x-1,newPosition.getX());
-        assertEquals(y, newPosition.getY());
+        assertEquals(0,newPosition.getX());
+        assertEquals(1, newPosition.getY());
     }
 
     @Test
@@ -86,10 +87,10 @@ class RoverTest {
         int y = 0;
         int x = 0;
         Rover rover = new Rover(x,y, Direction.EAST);
-        Position newPosition =  rover.move(Command.left);
+        Position newPosition =  rover.move(CommandType.left);
 
-        assertEquals(x, newPosition.getX());
-        assertEquals(y +1, newPosition.getY());
+        assertEquals(0, newPosition.getX());
+        assertEquals(1, newPosition.getY());
     }
 
 
@@ -98,10 +99,10 @@ class RoverTest {
         int x = 0;
         int y = 1;
         Rover rover = new Rover(x,y, Direction.EAST);
-        Position newPosition =  rover.move(Command.right);
+        Position newPosition =  rover.move(CommandType.right);
 
-        assertEquals(x, newPosition.getX());
-        assertEquals(y-1, newPosition.getY());
+        assertEquals(0, newPosition.getX());
+        assertEquals(0, newPosition.getY());
     }
 
 
@@ -110,7 +111,7 @@ class RoverTest {
         int x = 1;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.WEST);
-        Position newPosition =  rover.move(Command.forward);
+        Position newPosition =  rover.move(CommandType.forward);
         assertEquals(x-1, newPosition.getX());
         assertEquals(y, newPosition.getY());
     }
@@ -120,7 +121,7 @@ class RoverTest {
         int x=0;
         int y = 1;
         Rover rover = new Rover(x,y, Direction.WEST);
-        Position newPosition =  rover.move(Command.backward);
+        Position newPosition =  rover.move(CommandType.backward);
 
         assertEquals(x+1,newPosition.getX());
         assertEquals(y, newPosition.getY());
@@ -131,7 +132,7 @@ class RoverTest {
         int x = 0;
         int y = 1;
         Rover rover = new Rover(x,y, Direction.WEST);
-        Position newPosition =  rover.move(Command.left);
+        Position newPosition =  rover.move(CommandType.left);
 
         assertEquals(x, newPosition.getX());
         assertEquals(y - 1, newPosition.getY());
@@ -143,7 +144,7 @@ class RoverTest {
         int x = 0;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.WEST);
-        Position newPosition =  rover.move(Command.right);
+        Position newPosition =  rover.move(CommandType.right);
 
         assertEquals(x, newPosition.getX());
         assertEquals(y+1, newPosition.getY());
@@ -161,7 +162,7 @@ class RoverTest {
         int x = 0;
         int y = 1;
         Rover rover = new Rover(x,y, Direction.SOUTH);
-        Position newPosition =  rover.move(Command.forward);
+        Position newPosition =  rover.move(CommandType.forward);
         assertEquals(x, newPosition.getX());
         assertEquals(y-1, newPosition.getY());
     }
@@ -171,7 +172,7 @@ class RoverTest {
         int x=0;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.SOUTH);
-        Position newPosition =  rover.move(Command.backward);
+        Position newPosition =  rover.move(CommandType.backward);
 
         assertEquals(x,newPosition.getX());
         assertEquals(y+1, newPosition.getY());
@@ -182,9 +183,10 @@ class RoverTest {
         int x = 0;
         int y = 1;
         Rover rover = new Rover(x,y, Direction.SOUTH);
-        Position newPosition =  rover.move(Command.left);
+        Position newPosition =  rover.move(CommandType.left);
 
-        assertEquals(x +1 , newPosition.getX());
+        assertEquals(x+1 , newPosition.getX());
+
         assertEquals(y, newPosition.getY());
     }
 
@@ -194,7 +196,7 @@ class RoverTest {
         int x = 1;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.SOUTH);
-        Position newPosition =  rover.move(Command.right);
+        Position newPosition =  rover.move(CommandType.right);
 
         assertEquals(x -1, newPosition.getX());
         assertEquals(y, newPosition.getY());

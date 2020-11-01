@@ -1,11 +1,23 @@
 package my.playground;
 
 
-public class Rover {
+import my.playground.commands.*;
 
+import java.util.List;
+
+import static java.util.Arrays.asList;
+
+public class Rover {
 
     private Position position;
     private Direction direction;
+
+    private final List<Command> commands = asList(
+            new ForwardCommand(),
+            new BackwardCommand(),
+            new LeftCommand(),
+            new RightCommand()
+    );
 
     public Rover(int x, int y, Direction direction) {
         this.position = new Position(x,y);
@@ -46,61 +58,11 @@ public class Rover {
     }
 
 
-    public Position move(Command command) {
-        int x = this.getX();
-        int y = this.getY();
-        switch (this.direction){
-            case NORTH:
-                switch (command) {
-                    case forward:
-                        return new Position(x, y +1);
-                    case backward:
-                        return new Position(x, y -1);
-                    case left:
-                        return new Position(x -1, y);
-                    case right:
-                        return new Position(x +1, y);
-                }
-                break;
-            case EAST:
-                switch (command) {
-                    case forward:
-                        return new Position(x+1, y);
-                    case backward:
-                        return new Position(x-1, y);
-                    case left:
-                        return new Position(x, y + 1);
-                    case right:
-                        return new Position(x, y -1);
-                }
-                break;
-            case  SOUTH:
-                switch (command) {
-                    case forward:
-                        return new Position(x, y-1);
-                    case backward:
-                        return new Position(x, y+1);
-                    case left:
-                        return new Position(x+1, y );
-                    case right:
-                        return new Position(x-1, y );
-                }
-                break;
-            case  WEST:
-                switch (command) {
-                    case forward:
-                        return new Position(x-1, y);
-                    case backward:
-                        return new Position(x+1, y);
-                    case left:
-                        return new Position(x, y-1 );
-                    case right:
-                        return new Position(x, y +1);
-                }
-                break;
-            default:
-                throw new RuntimeException();
-        }
-        return null;
+    public Position move(CommandType commandType) {
+        return this.commands.stream()
+                .filter(c -> c.applicable(commandType))
+                .findFirst()
+                .map( c -> c.execute(this.direction, this.position))
+                .get();
     }
 }
