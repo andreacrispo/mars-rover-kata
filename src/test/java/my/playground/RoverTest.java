@@ -19,7 +19,7 @@ class RoverTest {
     public void should_move_forward_facing_north_when_no_obstacle_when_no_edge() {
         int y = 0;
         Rover rover = new Rover(0,y, Direction.NORTH);
-        Mars mars = new Mars(2,2, rover);
+        RoverEngine roverEngine = new RoverEngine(2,2, rover);
         Position newPosition =  rover.move(Command.forward);
 
         assertEquals(y+1, newPosition.getY());
@@ -29,7 +29,7 @@ class RoverTest {
     public void should_move_backward_facing_north_when_no_obstacle_when_no_edge() {
         int y = 1;
         Rover rover = new Rover(0,y, Direction.NORTH);
-        Mars mars = new Mars(2,2, rover);
+        RoverEngine roverEngine = new RoverEngine(2,2, rover);
         Position newPosition =  rover.move(Command.backward);
 
         assertEquals(0,newPosition.getX());
@@ -105,17 +105,6 @@ class RoverTest {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
     @Test
     public void should_move_forward_facing_west_when_no_obstacle_when_no_edge() {
         int x = 1;
@@ -159,13 +148,6 @@ class RoverTest {
         assertEquals(x, newPosition.getX());
         assertEquals(y+1, newPosition.getY());
     }
-
-
-
-
-
-
-
 
 
 
