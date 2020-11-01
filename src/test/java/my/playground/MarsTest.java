@@ -47,6 +47,29 @@ class MarsTest {
     }
 
     @Test
+    public void should_move_forward_facing_north_when_no_obstacle_but_with_edge() {
+        int x = 0;
+        int y = 1;
+        Rover rover = new Rover(x,y, Direction.NORTH);
+        Mars mars = new Mars(2,2, rover);
+        mars.moveRover(Command.forward);
+        assertEquals(1, mars.getLand()[0][0]);
+    }
+
+
+    @Test
+    public void should_move_forward_facing_west_when_no_obstacle_but_with_edge() {
+        int x = 0;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.WEST);
+        Mars mars = new Mars(2,2, rover);
+        mars.moveRover(Command.forward);
+        assertEquals(1, mars.getLand()[1][0]);
+    }
+
+
+
+    @Test
     public void should_move_backward_facing_north_when_no_obstacle_when_no_edge() {
         int y = 1;
         Rover rover = new Rover(0,y, Direction.NORTH);

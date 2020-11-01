@@ -44,12 +44,27 @@ public class Mars {
 
     public void moveRover(Command command) {
         Position oldPosition = this.rover.getPosition();
-        Position newPosition = this.rover.move(command);
-        if(this.encounterAnObstacle(newPosition)) {
+        Position nextPosition = this.rover.move(command);
+        if(this.encounterAnObstacle(nextPosition)) {
             this.reportObstacle();
-        }else{
-            this.setPositionOnLand(oldPosition, newPosition);
         }
+        else{
+            nextPosition = checkEdge(nextPosition);
+            this.setPositionOnLand(oldPosition, nextPosition);
+        }
+    }
+
+    private Position checkEdge(Position nextPosition) {
+        if(nextPosition.getX() >= nRow)
+            return new Position(0, nextPosition.getY());
+        if(nextPosition.getY() >= nCol)
+            return  new Position(nextPosition.getX(), 0);
+        if(nextPosition.getX() < 0)
+            return new Position(nRow-1, nextPosition.getY());
+        if(nextPosition.getY() < 0)
+            return new Position(nextPosition.getX(), nCol-1);
+
+        return nextPosition;
     }
 
     private void reportObstacle() {
