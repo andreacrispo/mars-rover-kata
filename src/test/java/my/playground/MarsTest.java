@@ -51,13 +51,62 @@ class MarsTest {
 
     @Test
     public void should_move_right_facing_north_when_no_obstacle_when_no_edge() {
-        int x = 1;
+        int x = 0;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.NORTH);
         Mars mars = new Mars(2,2, rover);
 
-        mars.moveRover(Command.left);
+        mars.moveRover(Command.right);
         assertEquals(1, mars.getLand()[1][0]);
     }
+
+
+
+
+    @Test
+    public void should_move_forward_facing_east_when_no_obstacle_when_no_edge() {
+        int y = 0;
+        Rover rover = new Rover(0,y, Direction.EAST);
+        Mars mars = new Mars(2,2, rover);
+
+        mars.moveRover(Command.forward);
+
+        assertEquals(1, mars.getLand()[1][0]);
+    }
+
+    @Test
+    public void should_move_backward_facing_east_when_no_obstacle_when_no_edge() {
+        int x = 1;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.EAST);
+        Mars mars = new Mars(2,2, rover);
+
+        mars.moveRover(Command.backward);
+        assertEquals(1, mars.getLand()[0][0]);
+    }
+
+    @Test
+    public void should_move_left_facing_east_when_no_obstacle_when_no_edge() {
+        int x = 0;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.EAST);
+        Mars mars = new Mars(2,2, rover);
+
+        mars.moveRover(Command.left);
+        assertEquals(1, mars.getLand()[0][1]);
+    }
+
+    @Test
+    public void should_move_right_facing_east_when_no_obstacle_when_no_edge() {
+        int x = 0;
+        int y = 1;
+        Rover rover = new Rover(x,y, Direction.EAST);
+        Mars mars = new Mars(2,2, rover);
+
+        mars.moveRover(Command.right);
+        assertEquals(1, mars.getLand()[0][0]);
+    }
+
+
 
 }

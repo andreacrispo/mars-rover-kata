@@ -50,6 +50,18 @@ public class Rover {
                         return new Position(x +1, y);
                 }
                 break;
+            case EAST:
+                switch (command) {
+                    case forward:
+                        return new Position(x+1, y);
+                    case backward:
+                        return new Position(x-1, y);
+                    case left:
+                        return new Position(x, y + 1);
+                    case right:
+                        return new Position(x, y -1);
+                }
+                break;
             default:
                 throw new RuntimeException();
         }
