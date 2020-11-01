@@ -34,7 +34,7 @@ class MarsTest {
 
 
     @Test
-    public void should_not_move_forward_facing_north_when__obstacle_but_when_no_edge() {
+    public void should_not_move_forward_facing_north_when_obstacle_but_when_no_edge() {
         int x = 0;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.NORTH);
@@ -43,7 +43,7 @@ class MarsTest {
 
         mars.moveRover(Command.forward);
 
-        assertEquals(1, mars.getLand()[0][1]);
+        assertEquals(1, mars.getLand()[0][0]);
     }
 
     @Test

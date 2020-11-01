@@ -2,6 +2,7 @@ package my.playground;
 
 public class Rover {
 
+
     private Position position;
     private Direction direction;
 
@@ -32,6 +33,15 @@ public class Rover {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public Position move(Command command) {

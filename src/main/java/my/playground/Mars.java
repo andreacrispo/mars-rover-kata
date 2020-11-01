@@ -43,11 +43,12 @@ public class Mars {
 
 
     public void moveRover(Command command) {
+        Position oldPosition = this.rover.getPosition();
         Position newPosition = this.rover.move(command);
-        if(this.encounterAnObstacle()) {
+        if(this.encounterAnObstacle(newPosition)) {
             this.reportObstacle();
         }else{
-            this.setPositionOnLand(newPosition);
+            this.setPositionOnLand(oldPosition, newPosition);
         }
     }
 
@@ -55,11 +56,12 @@ public class Mars {
 
     }
 
-    private boolean encounterAnObstacle() {
-        return false;
+    private boolean encounterAnObstacle(Position position) {
+        return this.obstacles.contains(position);
     }
 
-    private void setPositionOnLand(Position newPosition) {
+    private void setPositionOnLand(Position oldPosition, Position newPosition) {
+        this.land[oldPosition.getX()][oldPosition.getX()] = 0;
         this.land[newPosition.getX()][newPosition.getY()] = 1;
     }
 }
