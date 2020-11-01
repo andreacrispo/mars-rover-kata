@@ -1,12 +1,14 @@
 package my.playground;
 
 import my.playground.commands.CommandType;
+import org.junit.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RoverEngineTest {
 
@@ -158,4 +160,16 @@ class RoverEngineTest {
         assertEquals(1, roverEngine.getLand()[1][0]);
     }
 
+
+    @Test
+    @Disabled
+    public void receiveCommandsShouldStopWhenObstacleIsFound() throws Exception {
+        int expected = 4;
+        List<Position> obstacles = Collections.singletonList(new Position(3, 9));
+
+        Rover rover = new Rover(1,9, Direction.EAST);
+        RoverEngine roverEngine = new RoverEngine(new Mars(10,10), rover, obstacles);
+        roverEngine.moveRover("FFF");
+        assertEquals(expected, rover.getPosition().getX());
+    }
 }
