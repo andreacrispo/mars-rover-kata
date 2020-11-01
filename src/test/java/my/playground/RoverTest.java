@@ -116,5 +116,107 @@ class RoverTest {
 
 
 
+    @Test
+    public void should_move_forward_facing_west_when_no_obstacle_when_no_edge() {
+        int x = 1;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.WEST);
+        Position newPosition =  rover.move(Command.forward);
+        assertEquals(x-1, newPosition.getX());
+        assertEquals(y, newPosition.getY());
+    }
+
+    @Test
+    public void should_move_backward_facing_west_when_no_obstacle_when_no_edge() {
+        int x=0;
+        int y = 1;
+        Rover rover = new Rover(x,y, Direction.WEST);
+        Position newPosition =  rover.move(Command.backward);
+
+        assertEquals(x+1,newPosition.getX());
+        assertEquals(y, newPosition.getY());
+    }
+
+    @Test
+    public void should_move_left_facing_west_when_no_obstacle_when_no_edge() {
+        int x = 0;
+        int y = 1;
+        Rover rover = new Rover(x,y, Direction.WEST);
+        Position newPosition =  rover.move(Command.left);
+
+        assertEquals(x, newPosition.getX());
+        assertEquals(y - 1, newPosition.getY());
+    }
+
+
+    @Test
+    public void should_move_right_facing_west_when_no_obstacle_when_no_edge() {
+        int x = 0;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.WEST);
+        Position newPosition =  rover.move(Command.right);
+
+        assertEquals(x, newPosition.getX());
+        assertEquals(y+1, newPosition.getY());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Test
+    public void should_move_forward_facing_south_when_no_obstacle_when_no_edge() {
+        int x = 0;
+        int y = 1;
+        Rover rover = new Rover(x,y, Direction.SOUTH);
+        Position newPosition =  rover.move(Command.forward);
+        assertEquals(x, newPosition.getX());
+        assertEquals(y-1, newPosition.getY());
+    }
+
+    @Test
+    public void should_move_backward_facing_south_when_no_obstacle_when_no_edge() {
+        int x=0;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.SOUTH);
+        Position newPosition =  rover.move(Command.backward);
+
+        assertEquals(x,newPosition.getX());
+        assertEquals(y+1, newPosition.getY());
+    }
+
+    @Test
+    public void should_move_left_facing_south_when_no_obstacle_when_no_edge() {
+        int x = 0;
+        int y = 1;
+        Rover rover = new Rover(x,y, Direction.SOUTH);
+        Position newPosition =  rover.move(Command.left);
+
+        assertEquals(x +1 , newPosition.getX());
+        assertEquals(y, newPosition.getY());
+    }
+
+
+    @Test
+    public void should_move_right_facing_south_when_no_obstacle_when_no_edge() {
+        int x = 1;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.SOUTH);
+        Position newPosition =  rover.move(Command.right);
+
+        assertEquals(x -1, newPosition.getX());
+        assertEquals(y, newPosition.getY());
+    }
+
 
 }

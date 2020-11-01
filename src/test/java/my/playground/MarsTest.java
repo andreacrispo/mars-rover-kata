@@ -2,6 +2,10 @@ package my.playground;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MarsTest {
@@ -22,6 +26,20 @@ class MarsTest {
         int y = 0;
         Rover rover = new Rover(0,y, Direction.NORTH);
         Mars mars = new Mars(2,2, rover);
+
+        mars.moveRover(Command.forward);
+
+        assertEquals(1, mars.getLand()[0][1]);
+    }
+
+
+    @Test
+    public void should_not_move_forward_facing_north_when__obstacle_but_when_no_edge() {
+        int x = 0;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.NORTH);
+        List<Position> obstacles = Collections.singletonList(new Position(x, 1));
+        Mars mars = new Mars(2,2, rover, obstacles);
 
         mars.moveRover(Command.forward);
 
@@ -59,8 +77,6 @@ class MarsTest {
         mars.moveRover(Command.right);
         assertEquals(1, mars.getLand()[1][0]);
     }
-
-
 
 
     @Test
@@ -106,7 +122,5 @@ class MarsTest {
         mars.moveRover(Command.right);
         assertEquals(1, mars.getLand()[0][0]);
     }
-
-
 
 }

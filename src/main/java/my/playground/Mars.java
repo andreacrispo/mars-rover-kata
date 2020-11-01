@@ -1,18 +1,27 @@
 package my.playground;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Mars {
 
-    private final int nRow;
-    private final int nCol;
+    private int nRow;
+    private int nCol;
 
     private int[][] land;
 
     private Rover rover;
+    private List<Position> obstacles;
 
     public Mars(int nRow, int nCol, Rover rover) {
+         new Mars(nRow,nCol,rover, Collections.emptyList());
+    }
+
+    public Mars(int nRow, int nCol, Rover rover, List<Position> obstacles) {
         this.nRow = nRow;
         this.nCol = nCol;
         this.rover = rover;
+        this.obstacles = obstacles;
         this.createGrid();
     }
 
@@ -35,7 +44,19 @@ public class Mars {
 
     public void moveRover(Command command) {
         Position newPosition = this.rover.move(command);
-        this.setPositionOnLand(newPosition);
+        if(this.encounterAnObstacle()) {
+            this.reportObstacle();
+        }else{
+            this.setPositionOnLand(newPosition);
+        }
+    }
+
+    private void reportObstacle() {
+
+    }
+
+    private boolean encounterAnObstacle() {
+        return false;
     }
 
     private void setPositionOnLand(Position newPosition) {
