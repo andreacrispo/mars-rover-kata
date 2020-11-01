@@ -14,7 +14,7 @@ public class Mars {
     private List<Position> obstacles;
 
     public Mars(int nRow, int nCol, Rover rover) {
-         new Mars(nRow,nCol,rover, Collections.emptyList());
+         this(nRow,nCol,rover, Collections.emptyList());
     }
 
     public Mars(int nRow, int nCol, Rover rover, List<Position> obstacles) {
