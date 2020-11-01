@@ -1,5 +1,6 @@
 package my.playground;
 
+import my.playground.commands.CommandType;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -26,7 +27,7 @@ class RoverEngineTest {
         Rover rover = new Rover(0,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.forward);
+        roverEngine.moveRover(CommandType.forward);
 
         assertEquals(1, roverEngine.getLand()[0][1]);
     }
@@ -40,7 +41,7 @@ class RoverEngineTest {
         List<Position> obstacles = Collections.singletonList(new Position(x, 1));
         RoverEngine roverEngine = new RoverEngine(2,2, rover, obstacles);
 
-        roverEngine.moveRover(Command.forward);
+        roverEngine.moveRover(CommandType.forward);
 
         assertEquals(1, roverEngine.getLand()[0][0]);
     }
@@ -51,7 +52,7 @@ class RoverEngineTest {
         int y = 1;
         Rover rover = new Rover(x,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
-        roverEngine.moveRover(Command.forward);
+        roverEngine.moveRover(CommandType.forward);
         assertEquals(1, roverEngine.getLand()[0][0]);
     }
 
@@ -62,7 +63,7 @@ class RoverEngineTest {
         int y = 0;
         Rover rover = new Rover(x,y, Direction.WEST);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
-        roverEngine.moveRover(Command.forward);
+        roverEngine.moveRover(CommandType.forward);
         assertEquals(1, roverEngine.getLand()[1][0]);
     }
 
@@ -74,7 +75,7 @@ class RoverEngineTest {
         Rover rover = new Rover(0,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.backward);
+        roverEngine.moveRover(CommandType.backward);
         assertEquals(1, roverEngine.getLand()[0][0]);
     }
 
@@ -85,7 +86,7 @@ class RoverEngineTest {
         Rover rover = new Rover(x,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.left);
+        roverEngine.moveRover(CommandType.left);
         assertEquals(1, roverEngine.getLand()[0][0]);
     }
 
@@ -96,7 +97,7 @@ class RoverEngineTest {
         Rover rover = new Rover(x,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.right);
+        roverEngine.moveRover(CommandType.right);
         assertEquals(1, roverEngine.getLand()[1][0]);
     }
 
@@ -107,7 +108,7 @@ class RoverEngineTest {
         Rover rover = new Rover(0,y, Direction.EAST);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.forward);
+        roverEngine.moveRover(CommandType.forward);
 
         assertEquals(1, roverEngine.getLand()[1][0]);
     }
@@ -119,7 +120,7 @@ class RoverEngineTest {
         Rover rover = new Rover(x,y, Direction.EAST);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.backward);
+        roverEngine.moveRover(CommandType.backward);
         assertEquals(1, roverEngine.getLand()[0][0]);
     }
 
@@ -130,7 +131,7 @@ class RoverEngineTest {
         Rover rover = new Rover(x,y, Direction.EAST);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.left);
+        roverEngine.moveRover(CommandType.left);
         assertEquals(1, roverEngine.getLand()[0][1]);
     }
 
@@ -141,7 +142,7 @@ class RoverEngineTest {
         Rover rover = new Rover(x,y, Direction.EAST);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(Command.right);
+        roverEngine.moveRover(CommandType.right);
         assertEquals(1, roverEngine.getLand()[0][0]);
     }
 
