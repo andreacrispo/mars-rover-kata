@@ -146,4 +146,16 @@ class MarsTest {
         assertEquals(1, mars.getLand()[0][0]);
     }
 
+
+    @Test
+    public void should_move_based_on_list_of_commands() {
+        int x = 0;
+        int y = 0;
+        Rover rover = new Rover(x,y, Direction.NORTH);
+        Mars mars = new Mars(2,2, rover);
+
+        mars.moveRover("FRB");
+        assertEquals(1, mars.getLand()[1][0]);
+    }
+
 }

@@ -2,6 +2,7 @@ package my.playground;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class Mars {
 
@@ -12,6 +13,12 @@ public class Mars {
 
     private Rover rover;
     private List<Position> obstacles;
+    private final Map<Character, Command> commandMapper = Map.of(
+            'L', Command.left,
+            'R', Command.left,
+            'B', Command.backward,
+            'F', Command.forward
+    );
 
     public Mars(int nRow, int nCol, Rover rover) {
          this(nRow,nCol,rover, Collections.emptyList());
@@ -41,6 +48,17 @@ public class Mars {
       return this.land;
     }
 
+
+    public void moveRover(String command) {
+        for(int i=0; i < command.length(); i++) {
+            this.moveRover(command.charAt(i));
+        }
+    }
+
+    public void moveRover(char singleCommand) {
+        Command command =  this.commandMapper.get(singleCommand);
+        this.moveRover(command);
+    }
 
     public void moveRover(Command command) {
         Position oldPosition = this.rover.getPosition();
@@ -78,5 +96,15 @@ public class Mars {
     private void setPositionOnLand(Position oldPosition, Position newPosition) {
         this.land[oldPosition.getX()][oldPosition.getX()] = 0;
         this.land[newPosition.getX()][newPosition.getY()] = 1;
+    }
+
+
+
+    public void debug() {
+        for(int i=0; i< nRow; i++) {
+            for(int j=0; j<nCol; j++) {
+                System.out.println("land["+i+"]"+"["+j+"]" + land[i][j]);
+            }
+        }
     }
 }
