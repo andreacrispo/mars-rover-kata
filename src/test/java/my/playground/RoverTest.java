@@ -158,9 +158,9 @@ class RoverTest {
     @Test
     public void receiveCommandsShouldStopWhenObstacleIsFound()   {
         int expected = 2;
-        List<Position> obstacles = Collections.singletonList(new Position(3, 9));
-
-        Rover rover = new Rover(at(1,9), Direction.EAST,new Mars(10,10),obstacles);
+        List<Position> obstacles = Collections.singletonList(at(3, 9));
+        Mars mars = new Mars(at(10, 10), obstacles);
+        Rover rover = new Rover(at(1,9), Direction.EAST, mars);
         rover.move("FFF");
         assertEquals(expected, rover.getPosition().getX());
     }

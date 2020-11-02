@@ -1,30 +1,23 @@
 package my.playground;
-import my.playground.commands.*;
 
-import java.util.Collections;
-import java.util.List;
+import my.playground.commands.*;
 
 public class Rover {
 
     private Position position;
     private Direction direction;
     private final Mars mars;
-    private final List<Position> obstacles;
     private final RoverCommand commands;
 
-    public Rover(int x, int y, Direction direction,Mars mars) {
-       this(new Position(x,y), direction,mars, Collections.EMPTY_LIST);
+    public Rover(int x, int y, Direction direction, Mars mars) {
+        this(Position.at(x, y), direction, mars);
     }
 
-    public Rover(Position position, Direction direction,Mars mars) {
-        this(position, direction,mars,Collections.EMPTY_LIST);
-    }
 
-    public Rover(Position position, Direction direction, Mars mars, List<Position> obstacles) {
+    public Rover(Position position, Direction direction, Mars mars) {
         this.position = position;
         this.direction = direction;
         this.mars = mars;
-        this.obstacles = obstacles;
         this.commands = new RoverCommand();
     }
 
@@ -50,7 +43,7 @@ public class Rover {
 
 
     public void move(String command) {
-        for(int i=0; i < command.length(); i++) {
+        for (int i = 0; i < command.length(); i++) {
             this.move(command.charAt(i));
         }
     }
@@ -61,11 +54,10 @@ public class Rover {
 
     public Position move(CommandType commandType) {
         Position nextPosition = commands.getBy(commandType).execute(this);
-        if(this.encounterAnObstacle(nextPosition)) {
+        if (this.mars.isPresentAnObstacleAt(nextPosition)) {
             this.reportObstacle(nextPosition);
-        }
-        else{
-          this.position = this.mars.checkEdge(nextPosition);
+        } else {
+            this.position = this.mars.checkEdge(nextPosition);
         }
 
         return this.position;
@@ -75,8 +67,5 @@ public class Rover {
         System.out.println("Found an obstacle in " + nextPosition.toString());
     }
 
-    private boolean encounterAnObstacle(Position nextPosition) {
-        return this.obstacles.contains(nextPosition);
-    }
 
 }
