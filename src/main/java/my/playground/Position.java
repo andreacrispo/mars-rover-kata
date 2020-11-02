@@ -54,4 +54,6 @@ public class Position {
     public static Position Left() { return new Position(-1, 0); }
     public static Position Right() { return new Position(1, 0); }
 
+    public static Position at(int x, int y) { return new Position(x,y); }
+
 }
