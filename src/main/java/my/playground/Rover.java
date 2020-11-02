@@ -62,16 +62,17 @@ public class Rover {
     public Position move(CommandType commandType) {
         Position nextPosition = commands.getBy(commandType).execute(this);
         if(this.encounterAnObstacle(nextPosition)) {
-            this.reportObstacle();
+            this.reportObstacle(nextPosition);
         }
         else{
           this.position = this.mars.checkEdge(nextPosition);
         }
 
-        return nextPosition;
+        return this.position;
     }
 
-    private void reportObstacle() {
+    private void reportObstacle(Position nextPosition) {
+        System.out.println("Found an obstacle in " + nextPosition.toString());
     }
 
     private boolean encounterAnObstacle(Position nextPosition) {

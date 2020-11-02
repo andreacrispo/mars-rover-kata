@@ -4,7 +4,7 @@ public class Mars {
 
 
     private final Position edgeTopRightPosition;
-    private Position edgeBottomLeftPosition;
+    private final Position edgeBottomLeftPosition;
 
     public Mars(int topRightX, int topRightY) {
         this(Position.at(topRightX, topRightY));
