@@ -29,16 +29,23 @@ public class Mars {
 
 
     public Position checkEdge(Position nextPosition) {
-        if(nextPosition.getX() > this.edgeTopRightPosition.getX())
-            return new Position(edgeBottomLeftPosition.getX(), nextPosition.getY());
+        int edgeTopX    = edgeTopRightPosition.X();
+        int edgeTopY    = edgeTopRightPosition.Y();
+        int edgeBottomX = edgeBottomLeftPosition.X();
+        int edgeBottomY = edgeBottomLeftPosition.Y();
 
-        if(nextPosition.getY() >= this.edgeTopRightPosition.getX())
-            return new Position(nextPosition.getX(), edgeBottomLeftPosition.getY());
+        if(nextPosition.X() > edgeTopX)
+            return new Position(edgeBottomX, nextPosition.Y());
 
-        if(nextPosition.getX() < this.edgeBottomLeftPosition.getX())
-            return new Position(this.edgeTopRightPosition.getX() -1, nextPosition.getY());
-        if(nextPosition.getY() < this.edgeBottomLeftPosition.getY())
-            return new Position(nextPosition.getX(), this.edgeTopRightPosition.getY() -1);
+        if(nextPosition.Y() > edgeTopX)
+            return new Position(nextPosition.X(), edgeBottomY);
+
+        if(nextPosition.X() <  edgeBottomX)
+            return new Position(edgeTopX -1, nextPosition.Y());
+
+        if(nextPosition.Y() < edgeBottomY)
+            return new Position(nextPosition.X(), edgeTopY -1);
+
 
         return nextPosition;
     }

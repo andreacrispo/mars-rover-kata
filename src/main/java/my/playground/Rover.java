@@ -22,11 +22,11 @@ public class Rover {
     }
 
     public int getX() {
-        return position.getX();
+        return position.X();
     }
 
     public int getY() {
-        return position.getY();
+        return position.Y();
     }
 
     public Direction getDirection() {
@@ -66,6 +66,5 @@ public class Rover {
     private void reportObstacle(Position nextPosition) {
         System.out.println("Found an obstacle in " + nextPosition.toString());
     }
-
 
 }

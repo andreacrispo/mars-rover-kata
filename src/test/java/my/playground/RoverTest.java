@@ -26,7 +26,7 @@ class RoverTest {
         int y = 0;
         Rover rover = new Rover(at(0,y), NORTH, new Mars(2,2));
         Position newPosition =  rover.move(CommandType.forward);
-        assertEquals(y+1, newPosition.getY());
+        assertEquals(y+1, newPosition.Y());
     }
 
     @Test
@@ -35,8 +35,8 @@ class RoverTest {
         Rover rover = new Rover(at(0,y), NORTH, new Mars(2,2));
         Position newPosition =  rover.move(CommandType.backward);
 
-        assertEquals(0,newPosition.getX());
-        assertEquals(y-1, newPosition.getY());
+        assertEquals(0,newPosition.X());
+        assertEquals(y-1, newPosition.Y());
     }
 
     @Test
@@ -58,8 +58,8 @@ class RoverTest {
         int y = 0;
         Rover rover = new Rover(at(x,y), EAST,new Mars(at(2,2)));
         Position newPosition =  rover.move(CommandType.forward);
-        assertEquals(x+1, newPosition.getX());
-        assertEquals(y, newPosition.getY());
+        assertEquals(x+1, newPosition.X());
+        assertEquals(y, newPosition.Y());
     }
 
     @Test
@@ -69,8 +69,8 @@ class RoverTest {
         Rover rover = new Rover(at(x,y), EAST, new Mars(at(2,2)));
         Position newPosition =  rover.move(CommandType.backward);
 
-        assertEquals(0,newPosition.getX());
-        assertEquals(1, newPosition.getY());
+        assertEquals(0,newPosition.X());
+        assertEquals(1, newPosition.Y());
     }
 
 
@@ -82,8 +82,8 @@ class RoverTest {
         int y = 0;
         Rover rover = new Rover(at(x,y), WEST ,new Mars(at(2,2)));
         Position newPosition =  rover.move(CommandType.forward);
-        assertEquals(x-1, newPosition.getX());
-        assertEquals(y, newPosition.getY());
+        assertEquals(x-1, newPosition.X());
+        assertEquals(y, newPosition.Y());
     }
 
     @Test
@@ -93,8 +93,8 @@ class RoverTest {
         Rover rover = new Rover(at(x,y), WEST,new Mars(at(2,2)));
         Position newPosition =  rover.move(CommandType.backward);
 
-        assertEquals(x+1,newPosition.getX());
-        assertEquals(y, newPosition.getY());
+        assertEquals(x+1,newPosition.X());
+        assertEquals(y, newPosition.Y());
     }
 
 
@@ -105,8 +105,8 @@ class RoverTest {
         Rover rover = new Rover(at(x,y), WEST ,new Mars(at(2,2)));
         Position newPosition =  rover.move(CommandType.turnRight);
 
-        assertEquals(x, newPosition.getX());
-        assertEquals(y, newPosition.getY());
+        assertEquals(x, newPosition.X());
+        assertEquals(y, newPosition.Y());
         assertEquals( NORTH, rover.getDirection());
     }
 
@@ -117,8 +117,8 @@ class RoverTest {
         int y = 1;
         Rover rover = new Rover(at(x,y), SOUTH, new Mars(at(2,2)));
         Position newPosition =  rover.move(CommandType.forward);
-        assertEquals(x, newPosition.getX());
-        assertEquals(y-1, newPosition.getY());
+        assertEquals(x, newPosition.X());
+        assertEquals(y-1, newPosition.Y());
     }
 
     @Test
@@ -128,8 +128,8 @@ class RoverTest {
         Rover rover = new Rover(at(x,y), SOUTH, new Mars(at(2,2)));
         Position newPosition =  rover.move(CommandType.backward);
 
-        assertEquals(x,newPosition.getX());
-        assertEquals(y+1, newPosition.getY());
+        assertEquals(x,newPosition.X());
+        assertEquals(y+1, newPosition.Y());
     }
 
 
@@ -162,7 +162,7 @@ class RoverTest {
         Mars mars = new Mars(at(10, 10), obstacles);
         Rover rover = new Rover(at(1,9), Direction.EAST, mars);
         rover.move("FFF");
-        assertEquals(expected, rover.getPosition().getX());
+        assertEquals(expected, rover.getPosition().X());
     }
 
 

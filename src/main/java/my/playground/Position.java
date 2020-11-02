@@ -3,19 +3,19 @@ package my.playground;
 import java.util.Objects;
 
 public class Position {
-    int x;
-    int y;
+    private final int x;
+    private final int y;
 
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public int getX() {
+    public int X() {
         return x;
     }
 
-    public int getY() {
+    public int Y() {
         return y;
     }
 

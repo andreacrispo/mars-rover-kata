@@ -23,6 +23,6 @@ public class ForwardCommand implements Command {
     @Override
     public Position execute(Rover rover) {
         Position move = this.forwardMapper.get(rover.getDirection());
-        return new Position(rover.getX() + move.getX(), rover.getY() + move.getY());
+        return new Position(rover.getX() + move.X(), rover.getY() + move.Y());
     }
 }

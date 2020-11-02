@@ -23,7 +23,7 @@ public class BackwardCommand implements  Command {
     @Override
     public Position execute(Rover rover) {
         Position move = this.backwardMapper.get(rover.getDirection());
-        return new Position(rover.getX() + move.getX(), rover.getY() + move.getY());
+        return new Position(rover.getX() + move.X(), rover.getY() + move.Y());
     }
 
 }
