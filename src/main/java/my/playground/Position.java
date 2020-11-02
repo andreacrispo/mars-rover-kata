@@ -41,6 +41,13 @@ public class Position {
         return Objects.hash(x, y);
     }
 
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 
     public static Position Up() { return new Position(0, 1); }
     public static Position Down() { return new Position(0, -1); }

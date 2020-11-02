@@ -1,13 +1,13 @@
 package my.playground;
 
 import my.playground.commands.CommandType;
-import org.junit.Ignore;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 import java.util.List;
 
+import static my.playground.Direction.WEST;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RoverEngineTest {
@@ -63,7 +63,7 @@ class RoverEngineTest {
     public void should_move_forward_facing_west_when_no_obstacle_but_with_edge() {
         int x = 0;
         int y = 0;
-        Rover rover = new Rover(x,y, Direction.WEST);
+        Rover rover = new Rover(x,y, WEST);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
         roverEngine.moveRover(CommandType.forward);
         assertEquals(1, roverEngine.getLand()[1][0]);
@@ -88,8 +88,8 @@ class RoverEngineTest {
         Rover rover = new Rover(x,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(CommandType.left);
-        assertEquals(1, roverEngine.getLand()[0][0]);
+        roverEngine.moveRover(CommandType.turnLeft);
+        assertEquals(WEST, roverEngine.getRover().getDirection());
     }
 
     @Test
@@ -99,8 +99,9 @@ class RoverEngineTest {
         Rover rover = new Rover(x,y, Direction.NORTH);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(CommandType.right);
-        assertEquals(1, roverEngine.getLand()[1][0]);
+        roverEngine.moveRover(CommandType.turnRight);
+        assertEquals(rover.getPosition(), roverEngine.getRover().getPosition());
+        assertEquals(Direction.EAST, roverEngine.getRover().getDirection());
     }
 
 
@@ -126,26 +127,17 @@ class RoverEngineTest {
         assertEquals(1, roverEngine.getLand()[0][0]);
     }
 
+
     @Test
-    public void should_move_left_facing_east_when_no_obstacle_when_no_edge() {
+    public void should_turn_right_facing_east_when_no_obstacle_when_no_edge() {
         int x = 0;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.EAST);
         RoverEngine roverEngine = new RoverEngine(2,2, rover);
 
-        roverEngine.moveRover(CommandType.left);
-        assertEquals(1, roverEngine.getLand()[0][1]);
-    }
-
-    @Test
-    public void should_move_right_facing_east_when_no_obstacle_when_no_edge() {
-        int x = 0;
-        int y = 1;
-        Rover rover = new Rover(x,y, Direction.EAST);
-        RoverEngine roverEngine = new RoverEngine(2,2, rover);
-
-        roverEngine.moveRover(CommandType.right);
-        assertEquals(1, roverEngine.getLand()[0][0]);
+        roverEngine.moveRover(CommandType.turnRight);
+        assertEquals(rover.getPosition(), roverEngine.getRover().getPosition());
+        assertEquals(Direction.SOUTH, roverEngine.getRover().getDirection());
     }
 
 
@@ -154,17 +146,17 @@ class RoverEngineTest {
         int x = 0;
         int y = 0;
         Rover rover = new Rover(x,y, Direction.NORTH);
-        RoverEngine roverEngine = new RoverEngine(2,2, rover);
+        RoverEngine roverEngine = new RoverEngine(new Mars(4,4), rover);
 
-        roverEngine.moveRover("FRB");
-        assertEquals(1, roverEngine.getLand()[1][0]);
+        roverEngine.moveRover("FFR");
+        assertEquals(new Position(0,2), roverEngine.getRover().getPosition());
+        assertEquals(Direction.EAST, roverEngine.getRover().getDirection());
     }
 
 
     @Test
-    @Disabled
-    public void receiveCommandsShouldStopWhenObstacleIsFound() throws Exception {
-        int expected = 4;
+    public void receiveCommandsShouldStopWhenObstacleIsFound()   {
+        int expected = 2;
         List<Position> obstacles = Collections.singletonList(new Position(3, 9));
 
         Rover rover = new Rover(1,9, Direction.EAST);

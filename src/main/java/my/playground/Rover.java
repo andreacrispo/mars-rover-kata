@@ -15,8 +15,8 @@ public class Rover {
     private final List<Command> commands = asList(
             new ForwardCommand(),
             new BackwardCommand(),
-            new LeftCommand(),
-            new RightCommand()
+            new TurnLeftCommand(),
+            new TurnRightCommand()
     );
 
     public Rover(int x, int y, Direction direction) {
@@ -61,12 +61,11 @@ public class Rover {
         this.position = position;
     }
 
-
     public Position move(CommandType commandType) {
         return this.commands.stream()
                 .filter(c -> c.applicable(commandType))
                 .findFirst()
-                .map( c -> c.execute(this.direction, this.position))
+                .map( c -> c.execute(this))
                 .get();
     }
 }

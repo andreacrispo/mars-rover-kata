@@ -2,6 +2,7 @@ package my.playground.commands;
 
 import my.playground.Direction;
 import my.playground.Position;
+import my.playground.Rover;
 
 import java.util.Map;
 
@@ -20,9 +21,9 @@ public class BackwardCommand implements  Command {
     }
 
     @Override
-    public Position execute(Direction direction, Position currentPosition) {
-        Position move = this.backwardMapper.get(direction);
-        return new Position(currentPosition.getX() + move.getX(), currentPosition.getY() + move.getY());
+    public Position execute(Rover rover) {
+        Position move = this.backwardMapper.get(rover.getDirection());
+        return new Position(rover.getX() + move.getX(), rover.getY() + move.getY());
     }
 
 }

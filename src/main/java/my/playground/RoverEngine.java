@@ -18,17 +18,17 @@ public class RoverEngine {
     }
 
     public RoverEngine(int nRow, int nCol, Rover rover, List<Position> obstacles) {
-        this.mars = new Mars(nRow,nCol);
-        this.rover = rover;
-        this.obstacles = obstacles;
-        mars.placeRover(this.rover);
+        this(new Mars(nRow, nCol), rover, obstacles);
+    }
+
+    public RoverEngine(Mars mars, Rover rover) {
+         this(mars, rover, Collections.emptyList());
     }
 
     public RoverEngine(Mars mars, Rover rover, List<Position> obstacles) {
         this.mars = mars;
         this.rover = rover;
         this.obstacles = obstacles;
-        mars.createGrid();
         mars.placeRover(this.rover);
     }
 
@@ -45,7 +45,7 @@ public class RoverEngine {
     }
 
     public void moveRover(char singleCommand) {
-        CommandType commandType =  this.commandMapper.get(singleCommand);
+        CommandType commandType = this.commandMapper.get(singleCommand);
         this.moveRover(commandType);
     }
 
@@ -68,7 +68,7 @@ public class RoverEngine {
         if(nextPosition.getY() >= mars.nCol)
             return  new Position(nextPosition.getX(), 0);
         if(nextPosition.getX() < 0)
-                return new Position(mars.nRow -1, nextPosition.getY());
+            return new Position(mars.nRow -1, nextPosition.getY());
         if(nextPosition.getY() < 0)
             return new Position(nextPosition.getX(), mars.nCol -1);
 
@@ -90,6 +90,10 @@ public class RoverEngine {
     }
 
 
+    public Rover getRover() {
+        return rover;
+    }
+
     public void debug() {
         for(int i = 0; i< mars.nRow; i++) {
             for(int j = 0; j< mars.nCol; j++) {
@@ -100,8 +104,8 @@ public class RoverEngine {
 
 
     private final Map<Character, CommandType> commandMapper = Map.of(
-            'L', CommandType.left,
-            'R', CommandType.left,
+            'L', CommandType.turnLeft,
+            'R', CommandType.turnRight,
             'B', CommandType.backward,
             'F', CommandType.forward
     );
