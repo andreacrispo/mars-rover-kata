@@ -165,5 +165,39 @@ class RoverTest {
         assertEquals(expected, rover.getPosition().X());
     }
 
+    @Test
+    public void shouldReturnToBottomEdgeWhereEdgeTop()   {
+        Mars mars = new Mars(at(2, 2));
+        Rover rover = new Rover(at(0,0), NORTH, mars);
+        rover.move("FFF");
+        assertEquals(at(0,0), rover.getPosition());
+    }
+
+    @Test
+    public void shouldReturnToLeftEdgeWhereEdgeRight()   {
+        Mars mars = new Mars(at(2, 2));
+        Rover rover = new Rover(at(0,0), EAST, mars);
+        rover.move("FFF");
+        assertEquals(at(0,0), rover.getPosition());
+    }
+
+
+    @Test
+    public void shouldReturnToTopEdgeWhenGoBottomDown()   {
+        Mars mars = new Mars(at(2, 2));
+        Rover rover = new Rover(at(0,0), SOUTH, mars);
+        rover.move("F");
+        assertEquals(at(0,2), rover.getPosition());
+    }
+
+
+
+    @Test
+    public void shouldReturnToEastWHenGoLeftWest()   {
+        Mars mars = new Mars(at(2, 2));
+        Rover rover = new Rover(0,0, WEST, mars);
+        rover.move("F");
+        assertEquals(at(2,0), rover.getPosition());
+    }
 
 }

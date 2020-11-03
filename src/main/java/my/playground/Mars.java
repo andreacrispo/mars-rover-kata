@@ -13,9 +13,6 @@ public class Mars {
         this(Position.at(topRightX, topRightY));
     }
 
-    public Mars(int topRightX, int topRightY, List<Position> obstacles) {
-        this(Position.at(topRightX, topRightY), obstacles);
-    }
 
     public Mars(Position edgeTopRight) {
         this(edgeTopRight, Collections.EMPTY_LIST);
@@ -35,16 +32,16 @@ public class Mars {
         int edgeBottomY = edgeBottomLeftPosition.Y();
 
         if(nextPosition.X() > edgeTopX)
-            return new Position(edgeBottomX, nextPosition.Y());
+            return Position.at(edgeBottomX, nextPosition.Y());
 
-        if(nextPosition.Y() > edgeTopX)
-            return new Position(nextPosition.X(), edgeBottomY);
+        if(nextPosition.Y() > edgeTopY)
+            return Position.at(nextPosition.X(), edgeBottomY);
 
         if(nextPosition.X() <  edgeBottomX)
-            return new Position(edgeTopX -1, nextPosition.Y());
+            return Position.at(edgeTopX, nextPosition.Y());
 
         if(nextPosition.Y() < edgeBottomY)
-            return new Position(nextPosition.X(), edgeTopY -1);
+            return Position.at(nextPosition.X(), edgeTopY);
 
 
         return nextPosition;
